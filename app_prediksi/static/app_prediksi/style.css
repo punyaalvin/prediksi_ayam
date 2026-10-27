@@ -1,0 +1,424 @@
+body{
+    margin:0;
+    padding:0;
+    font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;
+    background:linear-gradient(135deg,#667eea,#764ba2);
+}
+
+/* ===========================
+   LAYOUT
+=========================== */
+
+.wrapper{
+    display:flex;
+    justify-content:center;
+    align-items:flex-start;
+    gap:40px;
+    padding:40px;
+    flex-wrap:wrap;
+}
+
+/* ===========================
+   BANNER
+=========================== */
+
+.side-section{
+    width:280px;
+    text-align:center;
+    color:white;
+}
+
+.side-section img{
+    width:100%;
+    border-radius:18px;
+    box-shadow:0 10px 25px rgba(0,0,0,.35);
+}
+
+.banner-text{
+    margin-top:15px;
+    font-size:16px;
+    font-weight:bold;
+    line-height:1.7;
+}
+
+/* ===========================
+   CONTAINER
+=========================== */
+
+.container{
+
+    width:500px;
+
+    background:rgba(255,255,255,.15);
+
+    backdrop-filter:blur(18px);
+
+    border-radius:20px;
+
+    padding:30px;
+
+    color:white;
+
+    box-shadow:0 12px 30px rgba(0,0,0,.35);
+
+    animation:fadeIn .6s;
+
+}
+
+/* ===========================
+   JUDUL
+=========================== */
+
+h1{
+
+    text-align:center;
+
+    margin-bottom:8px;
+
+}
+
+.subtitle{
+
+    text-align:center;
+
+    margin-bottom:25px;
+
+    opacity:.9;
+
+    font-size:14px;
+
+}
+
+/* ===========================
+   FORM
+=========================== */
+
+label{
+
+    display:block;
+
+    margin-top:15px;
+
+    margin-bottom:6px;
+
+    font-weight:bold;
+
+}
+
+select{
+
+    width:100%;
+
+    padding:11px;
+
+    border:none;
+
+    border-radius:10px;
+
+    font-size:14px;
+
+    box-sizing:border-box;
+
+    outline:none;
+
+}
+
+select:focus{
+
+    box-shadow:0 0 8px white;
+
+}
+
+/* ===========================
+   BUTTON
+=========================== */
+
+button{
+
+    width:100%;
+
+    margin-top:22px;
+
+    padding:13px;
+
+    border:none;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    color:white;
+
+    font-size:16px;
+
+    font-weight:bold;
+
+    background:linear-gradient(135deg,#00b09b,#96c93d);
+
+    transition:.3s;
+
+}
+
+button:hover{
+
+    transform:scale(1.02);
+
+}
+
+/* ===========================
+   HASIL
+=========================== */
+
+.hasil{
+
+    margin-top:30px;
+
+    padding:25px;
+
+    border-radius:15px;
+
+    background:rgba(255,255,255,.12);
+
+    animation:fadeIn .5s;
+
+}
+
+.hasil h2{
+
+    text-align:center;
+
+    color:#FFD54F;
+
+    margin-bottom:20px;
+
+    line-height:1.4;
+
+}
+
+.hasil h3{
+
+    margin-top:25px;
+
+    margin-bottom:15px;
+
+    color:#FFF59D;
+
+    text-align:center;
+
+    letter-spacing:1px;
+
+}
+
+.hasil hr{
+
+    border:none;
+
+    border-top:1px solid rgba(255,255,255,.35);
+
+    margin:25px 0;
+
+}
+
+/* ===========================
+   DATA INPUT
+=========================== */
+
+.data-input{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:10px;
+
+}
+
+.data-input p{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin:0;
+
+    padding:8px 0;
+
+    border-bottom:1px dashed rgba(255,255,255,.25);
+
+}
+
+.data-input span{
+
+    font-weight:bold;
+
+}
+
+.data-input b{
+
+    font-weight:600;
+
+}
+
+/* ===========================
+   PREDIKSI
+=========================== */
+
+.prediksi-box{
+
+    background:rgba(255,255,255,.08);
+
+    border-radius:15px;
+
+    padding:20px;
+
+}
+
+.prediksi-item{
+
+    text-align:center;
+
+    padding:18px;
+
+    margin-bottom:18px;
+
+    border-radius:12px;
+
+    background:rgba(0,180,80,.22);
+
+}
+
+.prediksi-item:last-child{
+
+    margin-bottom:0;
+
+}
+
+.prediksi-item p{
+
+    font-size:18px;
+
+    font-weight:bold;
+
+    margin-bottom:10px;
+
+}
+
+.prediksi-item h2{
+
+    margin:0;
+
+    color:#FFF176;
+
+    font-size:30px;
+
+}
+
+/* Jika hanya satu prediksi */
+
+.prediksi-box h2{
+
+    margin:0;
+
+    text-align:center;
+
+    font-size:34px;
+
+    color:#FFF176;
+
+}
+
+/* ===========================
+   KETERANGAN
+=========================== */
+
+.keterangan-box{
+
+    background:rgba(255,255,255,.08);
+
+    border-left:5px solid #FFD54F;
+
+    border-radius:10px;
+
+    padding:18px;
+
+}
+
+.keterangan-box p{
+
+    margin:0;
+
+    line-height:1.8;
+
+    text-align:justify;
+
+}
+
+/* ===========================
+   ERROR
+=========================== */
+
+.error{
+
+    background:#d32f2f;
+
+    padding:15px;
+
+    border-radius:10px;
+
+    text-align:center;
+
+}
+
+/* ===========================
+   RESPONSIVE
+=========================== */
+
+@media(max-width:1000px){
+
+.wrapper{
+
+    flex-direction:column;
+
+    align-items:center;
+
+}
+
+.container{
+
+    width:92%;
+
+}
+
+.side-section{
+
+    width:90%;
+
+}
+
+}
+
+/* ===========================
+   ANIMATION
+=========================== */
+
+@keyframes fadeIn{
+
+from{
+
+opacity:0;
+
+transform:translateY(15px);
+
+}
+
+to{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+}

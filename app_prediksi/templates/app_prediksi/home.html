@@ -1,0 +1,233 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sistem Prediksi Ayam</title>
+    <link rel="stylesheet" href="{% static 'app_prediksi/style.css' %}">
+
+    <script>
+        function toggleJenisPromosi() {
+            var promosi = document.getElementById("promosi").value;
+            var jenisDiv = document.getElementById("jenis_promosi_div");
+
+            if (promosi === "Ya") {
+                jenisDiv.style.display = "block";
+            } else {
+                jenisDiv.style.display = "none";
+            }
+        }
+
+        function loadingButton(btn) {
+            btn.innerHTML = "⏳ Memproses...";
+        }
+
+        window.onload = function () {
+            toggleJenisPromosi();
+        }
+    </script>
+</head>
+
+<body>
+
+<div class="wrapper">
+
+    <!-- KIRI -->
+    <div class="side-section">
+        <img src="{% static 'app_prediksi/banner.jpeg' %}" alt="Banner">
+
+        <div class="banner-text">
+            🔥 Dicelup Lebih Berasa!<br>
+            Kami tersedia di Gofood, Grabfood, Shopeefood
+        </div>
+    </div>
+
+    <!-- TENGAH -->
+    <div class="container">
+
+        <h1>Prediksi Penjualan Ayam</h1>
+
+        <div class="subtitle">
+            Sistem Prediksi Berbasis Machine Learning (Decision Tree Regressor)
+        </div>
+
+        <form method="post">
+
+            {% csrf_token %}
+
+            <label>Hari</label>
+            <select name="hari">
+                <option>Senin</option>
+                <option>Selasa</option>
+                <option>Rabu</option>
+                <option>Kamis</option>
+                <option>Jumat</option>
+                <option>Sabtu</option>
+                <option>Minggu</option>
+            </select>
+
+            <label>Cuaca (Opsional)</label>
+            <select name="cuaca">
+                <option value="">-- Tidak Diketahui --</option>
+                <option>Cerah</option>
+                <option>Hujan</option>
+            </select>
+
+            <label>Promosi</label>
+            <select
+                name="promosi"
+                id="promosi"
+                onchange="toggleJenisPromosi()">
+
+                <option>Ya</option>
+                <option>Tidak</option>
+
+            </select>
+
+            <div id="jenis_promosi_div">
+
+                <label>Jenis Promosi</label>
+
+                <select name="jenis_promosi">
+
+                    <option>Minuman</option>
+                    <option>Extra Saus</option>
+
+                </select>
+
+            </div>
+
+            <label>Hari Libur</label>
+
+            <select name="hari_libur">
+
+                <option>Ya</option>
+                <option>Tidak</option>
+
+            </select>
+
+            <label>Durasi Buka (Jam)</label>
+
+            <select name="durasi_buka" required>
+
+                <option value="">-- Pilih Durasi Buka --</option>
+                <option value="8">8 Jam</option>
+                <option value="9">9 Jam</option>
+                <option value="10">10 Jam</option>
+                <option value="11">11 Jam</option>
+
+            </select>
+
+            <button
+                type="submit"
+                onclick="loadingButton(this)">
+
+                🔍 Prediksi
+
+            </button>
+
+        </form>
+
+        <!-- ========================= -->
+        <!-- LAPORAN HASIL PREDIKSI -->
+        <!-- ========================= -->
+
+        {% if laporan %}
+
+        <div class="hasil">
+
+            {% if laporan.error %}
+
+                <h2>Terjadi Kesalahan</h2>
+
+                <p>{{ laporan.error }}</p>
+
+            {% else %}
+
+                <h2>📋 Laporan Hasil Prediksi Penjualan</h2>
+
+                <table class="laporan">
+
+                    <tr>
+                        <td><b>Hari</b></td>
+                        <td>{{ laporan.hari }}</td>
+                    </tr>
+
+                    <tr>
+                        <td><b>Cuaca</b></td>
+                        <td>{{ laporan.cuaca }}</td>
+                    </tr>
+
+                    <tr>
+                        <td><b>Promosi</b></td>
+                        <td>{{ laporan.promosi }}</td>
+                    </tr>
+
+                    <tr>
+                        <td><b>Jenis Promosi</b></td>
+                        <td>{{ laporan.jenis_promosi }}</td>
+                    </tr>
+
+                    <tr>
+                        <td><b>Hari Libur</b></td>
+                        <td>{{ laporan.hari_libur }}</td>
+                    </tr>
+
+                    <tr>
+                        <td><b>Durasi Buka</b></td>
+                        <td>{{ laporan.durasi_buka }} Jam</td>
+                    </tr>
+
+                </table>
+
+                <hr>
+
+                <h3>Hasil Prediksi</h3>
+
+                {% if laporan.prediksi %}
+
+                    <h2>{{ laporan.prediksi }} Porsi Ayam</h2>
+
+                {% else %}
+
+                    <p>
+                        <b>Jika Cuaca Cerah :</b>
+                        {{ laporan.prediksi_cerah }} Porsi Ayam
+                    </p>
+
+                    <p>
+                        <b>Jika Cuaca Hujan :</b>
+                        {{ laporan.prediksi_hujan }} Porsi Ayam
+                    </p>
+
+                {% endif %}
+
+                <hr>
+
+                <h3>Keterangan</h3>
+
+                <p>{{ laporan.keterangan }}</p>
+
+            {% endif %}
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+    <!-- KANAN -->
+    <div class="side-section">
+
+        <img src="{% static 'app_prediksi/kios.jpeg' %}" alt="Kios">
+
+        <div class="banner-text">
+            Ayam D'Celup Kukusan <br>
+            Dapatkan promo menarik khusus pembelian langsung!
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>
